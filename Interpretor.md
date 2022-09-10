@@ -16,19 +16,19 @@ pn(PostNotion)--cal-->tt(Truth Table)
 
 #### variable
 
-取值为$$\{true,false\}$$，由一个或者多个连续字母表示
+取值为`{true,false}`，由一个或者多个连续字母表示
 
-合法变量：$$p$$ , $$q$$ , $$var$$ , $$ksks$$ , $$ty$$
+合法变量：`p` , `q` , `var` , `ksks` , `ty`
 
-不合法变量：$$val1$$ (必须由纯字母构成), $$v~ar$$(必须由连续字母构成)
+不合法变量：`val1` (必须由纯字母构成), `v~ar`(必须由连续字母构成)
 
 
 
 #### operator
 
-一共有五种逻辑运算符：$$!$$  $$\wedge$$  $$\lor$$  $$\rightarrow$$  $$\Leftrightarrow$$
+一共有五种逻辑运算符：`!`  `\wedge`  `\lor`  `\rightarrow`  `\Leftrightarrow`  (逻辑非，逻辑合取，逻辑析取，单蕴含，双蕴含)
 
-1. $$!$$
+1. `!`
 
    单目运算符，优先级为**5**
 
@@ -166,4 +166,4 @@ $$Operator$$类型要求：$$Priority$$优先级，具体类型（左括号/右�
 
 ### Repeat过程
 
-进行一个
+进行一个递归的大动作
