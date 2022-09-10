@@ -2,6 +2,8 @@
 #define OPERATOR_H
 
 #include"Stack.h"
+#include<iostream>
+using std::string;
 /*
 operator的优先级同时代表其具体类型
 NEG>CON>DIS>IMPLY>DUAL
@@ -30,6 +32,7 @@ public:
 
 	//获得Operator的优先级/具体类型
 	Priority getID()const { return pri; }
+
 	char getName()
 	{
 		if (pri == Priority::P_NEG) return '!'  ;
@@ -41,6 +44,18 @@ public:
 
 		cerr << "No name!"; exit(1);
 	}
+
+	//string getOutputName()
+	//{
+	//	if (pri == Priority::P_NEG) return "\\neg";
+	//	if (pri == Priority::P_CONJ) return "\\land";
+	//	if (pri == Priority::P_DISJ) return "\\lor";
+	//	if (pri == Priority::P_IMPLY) return "\\rightarrow";
+	//	if (pri == Priority::P_DUAL) return "\\LeftRightArrow";
+	//	if (pri == Priority::P_XOR) return "\\bigoplus";
+
+	//	cerr << "No name!"; exit(1);
+	//}
 private:
 	Priority pri;
 };

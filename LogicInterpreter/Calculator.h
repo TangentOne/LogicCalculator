@@ -45,42 +45,42 @@ public:
 				if (op.getID() == Priority::P_NEG)
 				{
 					Variables var = stack.pop();
-					Variables var2('!'+getASqure(var.getName()), !var.getVal());
+					Variables var2("\\neg" + getASqure(var.getName()), !var.getVal());
 					stack.push(var2);
 				}
 				else if (op.getID() == Priority::P_CONJ)
 				{
 					Variables var1 = stack.pop();
 					Variables var2 = stack.pop();
-					Variables var3(getASqure(var2.getName())+"&"+getASqure(var1.getName()), (var2.getVal()&var1.getVal()));
+					Variables var3(getASqure(var2.getName())+"\\land "+getASqure(var1.getName()), (var2.getVal()&var1.getVal()));
 					stack.push(var3);
 				}
 				else if (op.getID() == Priority::P_DISJ)
 				{
 					Variables var1 = stack.pop();
 					Variables var2 = stack.pop();
-					Variables var3(getASqure(var2.getName()) + "|" + getASqure(var1.getName()), (var2.getVal() | var1.getVal()));
+					Variables var3(getASqure(var2.getName()) + "\\lor " + getASqure(var1.getName()), (var2.getVal() | var1.getVal()));
 					stack.push(var3);
 				}
 				else if (op.getID() == Priority::P_DUAL)
 				{
 					Variables var1 = stack.pop();
 					Variables var2 = stack.pop();
-					Variables var3(getASqure(var2.getName()) + "<" + getASqure(var1.getName()),getDualAns(var2.getVal(),var1.getVal()));
+					Variables var3(getASqure(var2.getName()) + "\\leftrightarrow " + getASqure(var1.getName()),getDualAns(var2.getVal(),var1.getVal()));
 					stack.push(var3);
 				}
 				else if (op.getID() == Priority::P_IMPLY)
 				{
 					Variables var1 = stack.pop();
 					Variables var2 = stack.pop();
-					Variables var3(getASqure(var2.getName()) + ">" + getASqure(var1.getName()), getImplyAns(var2.getVal(),var1.getVal()));
+					Variables var3(getASqure(var2.getName()) + "\\rightarrow " + getASqure(var1.getName()), getImplyAns(var2.getVal(),var1.getVal()));
 					stack.push(var3);
 				}
 				else if (op.getID() == Priority::P_XOR)
 				{
 					Variables var1 = stack.pop();
 					Variables var2 = stack.pop();
-					Variables var3(getASqure(var2.getName()) + "^" + getASqure(var1.getName()), getXorAns(var2.getVal(), var1.getVal()));
+					Variables var3(getASqure(var2.getName()) + "\\bigoplus" + getASqure(var1.getName()), getXorAns(var2.getVal(), var1.getVal()));
 					stack.push(var3);
 				}
 			}
