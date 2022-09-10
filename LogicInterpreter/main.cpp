@@ -1,5 +1,7 @@
 #include<iostream>
 #include"Translate.h"
+#include"Assign.h"
+#include"Calculator.h"
 using namespace std;
 using std::string;
 
@@ -20,6 +22,9 @@ int main()
 {
 	string ss("(!p<!q)<(q<r)");
 	string postfix = getPostfixNotion(ss);
-	cout << postfix;
+	Assign
+	Calculator cal(postfix);
+	cout << cal.work();
+
 	return 0;
 }

@@ -32,6 +32,7 @@ public:
 		if (pri == Priority::P_DISJ) return '|';
 		if (pri == Priority::P_IMPLY) return '>';
 		if (pri == Priority::P_DUAL) return '<';
+		cerr << "No name!"; exit(1);
 	}
 private:
 	Priority pri;

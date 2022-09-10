@@ -24,13 +24,27 @@ public:
 	static int Varcnt;
 	static string VarSeq[maxVariables];
 
+	Variables() :StackItem(StackItemID::SI_VAR), name(""), val(NULL) {};
+
 	Variables(string na):StackItem(StackItemID::SI_VAR), name(na), val(NULL)
 	{
-		if (VariableName.find(name) != VariableName.end()) { val = &VariableVal[VariableName[name]]; }
+		if (VariableName.find(name) != VariableName.end()) { val = &VariableVal[VariableName[name]]; return; }
 		VariableName.emplace(name, ++Varcnt);
 		VarSeq[Varcnt] = name;
 		val = &VariableVal[Varcnt];
 	}
+
+	Variables(string na,bool value) :StackItem(StackItemID::SI_VAR), name(na), val(NULL)
+	{
+		if (VariableName.find(name) != VariableName.end()) { val = &VariableVal[VariableName[name]]; *val = value; return; }
+		VariableName.emplace(name, ++Varcnt);
+		VarSeq[Varcnt] = name;
+		val = &VariableVal[Varcnt];
+		*val = value;
+	}
+
+	string getName() const { return name; }
+
 
 	int setVal(bool& pos) { val = &pos; }
 	int getVal() { if (val == NULL) { cerr << "Variables"<<name <<" Not yet assigned."; exit(1); } return *val; }
@@ -41,7 +55,7 @@ private:
 };
 
 map<string, int> Variables::VariableName;
-static string VarSeq[maxVariables];
+string Variables::VarSeq[maxVariables];
 bool Variables::VariableVal[maxVariables];
 int Variables::Varcnt=0;
 

@@ -3,25 +3,8 @@
 #include"Stack.h"
 #include"Operator.h"
 #include"cstdlib"
+#include"Variables.h"
 using std::string;
-
-bool isAlphabet(char x)
-{
-	if (x >= 'a' && x <= 'z') return true;
-	if (x >= 'A' && x <= 'Z')return true;
-	return false;
-}
-
-string extractVar(const string& data, int& sta)
-{
-	string tmp;
-	for (; isAlphabet(data[sta]); ++sta)
-	{
-		tmp += data[sta];
-	}
-	sta--;
-	return tmp;
-}
 
 Priority getPriority(char x)
 {
@@ -60,6 +43,7 @@ public:
 			if (isAlphabet(data[i]))					//如果是变量，直接输出
 			{
 				string name=extractVar(data, i);
+				Variables var(name);
 				output += name+' ';
 			}
 			else                 
