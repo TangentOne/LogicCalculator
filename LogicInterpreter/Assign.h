@@ -14,7 +14,7 @@ public:
 	//�ݹ鸳ֵ
 	void dfs(int step)
 	{
-		if (step == maxstep + 1) { Calculator ca(postfix); std::cout << ca.work(); }
+		if (step == maxstep + 1) { Calculator ca(postfix); std::cout << ca.work(); return; }
 		for (int i = 0; i <= 1; ++i)
 		{
 			Variables::VariableVal[step] = i;
