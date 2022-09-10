@@ -23,16 +23,6 @@ private:
 };
 
 
-enum StackItemID
-{SI_VAR,SI_OPE};
-class StackItem
-{
-public:
-	StackItem(StackItemID x) :id(x) {};
-	StackItemID getID()const { return id; }
-private:
-	StackItemID id;
-};
 
 
 bool isAlphabet(char x)

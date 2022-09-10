@@ -11,12 +11,14 @@ enum Priority
 	P_LEFT,P_DUAL,P_IMPLY,P_DISJ,P_CONJ,P_NEG,P_RIGHT
 };
 
-class Operators: public StackItem
+class Operators
 {
 public:
-	Operators() :StackItem(StackItemID::SI_VAR), pri(P_DUAL) {};
-	Operators(Priority p) :StackItem(StackItemID::SI_VAR),pri(p) {};
-	Operators(char x) :StackItem(StackItemID::SI_VAR)
+	Operators() : pri(P_DUAL) {};
+	Operators(Priority p):pri(p) {};
+	
+	//自动分配
+	Operators(char x) 
 	{
 		if (x == '!') { pri = Priority::P_NEG;  }
 		if (x == '&') { pri = Priority::P_CONJ; }
@@ -24,6 +26,8 @@ public:
 		if (x == '>') { pri = Priority::P_IMPLY;}
 		if (x == '<') { pri = Priority::P_DUAL; }
 	}
+
+	//获得Operator的优先级/具体类型
 	Priority getID()const { return pri; }
 	char getName()
 	{
