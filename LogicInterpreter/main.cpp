@@ -20,8 +20,9 @@ string getPostfixNotion(const string& PrefixNotion)
 
 int main()
 {
-	string ss("(!p<!q)<(q<r)");
+	string ss("(p>q)|(!p>r)");
 	string postfix = getPostfixNotion(ss);
+	cout << postfix << endl;
 	Assign assigner(postfix,Variables::Varcnt);
 	assigner.work();
 

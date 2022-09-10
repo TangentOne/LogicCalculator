@@ -48,28 +48,28 @@ public:
 				{
 					Variables var1 = stack.pop();
 					Variables var2 = stack.pop();
-					Variables var3(getASqure(var1.getName())+"&"+getASqure(var2.getName()), (var1.getVal()&var2.getVal()));
+					Variables var3(getASqure(var2.getName())+"&"+getASqure(var1.getName()), (var2.getVal()&var1.getVal()));
 					stack.push(var3);
 				}
 				else if (op.getID() == Priority::P_DISJ)
 				{
 					Variables var1 = stack.pop();
 					Variables var2 = stack.pop();
-					Variables var3(getASqure(var1.getName()) + "|" + getASqure(var2.getName()), (var1.getVal() | var2.getVal()));
+					Variables var3(getASqure(var2.getName()) + "|" + getASqure(var1.getName()), (var2.getVal() | var1.getVal()));
 					stack.push(var3);
 				}
 				else if (op.getID() == Priority::P_DUAL)
 				{
 					Variables var1 = stack.pop();
 					Variables var2 = stack.pop();
-					Variables var3(getASqure(var1.getName()) + "<" + getASqure(var2.getName()),getDualAns(var1.getVal(),var2.getVal()));
+					Variables var3(getASqure(var2.getName()) + "<" + getASqure(var1.getName()),getDualAns(var2.getVal(),var1.getVal()));
 					stack.push(var3);
 				}
 				else if (op.getID() == Priority::P_IMPLY)
 				{
 					Variables var1 = stack.pop();
 					Variables var2 = stack.pop();
-					Variables var3(getASqure(var1.getName()) + ">" + getASqure(var2.getName()), getImplyAns(var1.getVal(),var2.getVal()));
+					Variables var3(getASqure(var2.getName()) + ">" + getASqure(var1.getName()), getImplyAns(var2.getVal(),var1.getVal()));
 					stack.push(var3);
 				}
 			}

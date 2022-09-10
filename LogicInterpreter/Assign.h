@@ -3,6 +3,7 @@
 
 #include<iostream>
 #include"Calculator.h"
+#include"Outputer.h"
 using std::string;
 
 
@@ -14,7 +15,7 @@ public:
 	//�ݹ鸳ֵ
 	void dfs(int step)
 	{
-		if (step == maxstep + 1) { Calculator ca(postfix); std::cout << ca.work(); return; }
+		if (step == maxstep + 1) { Calculator ca(postfix); ca.work(); Outputer out; out.outputone(); return; }
 		for (int i = 0; i <= 1; ++i)
 		{
 			Variables::VariableVal[step] = i;
