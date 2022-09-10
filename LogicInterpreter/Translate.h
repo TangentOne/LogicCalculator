@@ -15,7 +15,7 @@ Priority getPriority(char x)
 	if (x == '<') { return Priority::P_DUAL; }
 	if (x == '(') { return Priority::P_LEFT; }
 	if (x == ')') { return Priority::P_RIGHT; }
-
+	if (x == '^') { return Priority::P_XOR; }
 	std::cerr << "No operator" << x << "exsited.";
 	exit(1);
 }
@@ -27,7 +27,8 @@ char getOperatorName(Priority p)
 	if (p == Priority::P_CONJ) { return '&'; }
 	if (p == Priority::P_IMPLY) { return '>'; }
 	if (p == Priority::P_DUAL) { return '<'; }
-	
+	if (p == Priority::P_XOR) { return '^'; }
+
 	std::cerr << "No operator" << p << "exsited.";
 	exit(1);
 }

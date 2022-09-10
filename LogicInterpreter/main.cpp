@@ -20,7 +20,7 @@ string getPostfixNotion(const string& PrefixNotion)
 
 int main()
 {
-	string ss("(p>q)|(!p>r)");
+	string ss("(p^q)>(p^!q)");
 	string postfix = getPostfixNotion(ss);
 	cout << postfix << endl;
 	Assign assigner(postfix,Variables::Varcnt);

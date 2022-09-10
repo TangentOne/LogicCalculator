@@ -18,6 +18,10 @@ bool getImplyAns(bool a,bool b)
 	return (!a | b);
 }
 
+bool getXorAns(bool a, bool b)
+{
+	return (!a & b) | (a & !b);
+}
 
 class Calculator
 {
@@ -70,6 +74,13 @@ public:
 					Variables var1 = stack.pop();
 					Variables var2 = stack.pop();
 					Variables var3(getASqure(var2.getName()) + ">" + getASqure(var1.getName()), getImplyAns(var2.getVal(),var1.getVal()));
+					stack.push(var3);
+				}
+				else if (op.getID() == Priority::P_XOR)
+				{
+					Variables var1 = stack.pop();
+					Variables var2 = stack.pop();
+					Variables var3(getASqure(var2.getName()) + "^" + getASqure(var1.getName()), getXorAns(var2.getVal(), var1.getVal()));
 					stack.push(var3);
 				}
 			}
