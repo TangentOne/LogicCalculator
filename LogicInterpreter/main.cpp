@@ -22,9 +22,8 @@ int main()
 {
 	string ss("(!p<!q)<(q<r)");
 	string postfix = getPostfixNotion(ss);
-	Assign
-	Calculator cal(postfix);
-	cout << cal.work();
+	Assign assigner(postfix,Variables::Varcnt);
+	assigner.work();
 
 	return 0;
 }

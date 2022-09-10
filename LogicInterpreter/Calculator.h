@@ -28,6 +28,7 @@ public:
 	{
 		for (int i = 0; Postfix[i] != '\0'; ++i)
 		{
+			if (Postfix[i] == ' ') continue;
 			if (isAlphabet(Postfix[i]))
 			{
 				string name = extractVar(Postfix, i);
@@ -40,7 +41,7 @@ public:
 				if (op.getID() == Priority::P_NEG)
 				{
 					Variables var = stack.pop();
-					Variables var2(getASqure(var.getName()), !var.getVal());
+					Variables var2('!'+getASqure(var.getName()), !var.getVal());
 					stack.push(var2);
 				}
 				else if (op.getID() == Priority::P_CONJ)

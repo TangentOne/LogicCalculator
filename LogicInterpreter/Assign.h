@@ -2,6 +2,7 @@
 #define ASSIGN_H
 
 #include<iostream>
+#include"Calculator.h"
 using std::string;
 
 
@@ -9,10 +10,21 @@ class Assign
 {
 public:
 	Assign(const string& str,int initialVarNum) :postfix(str),maxstep(initialVarNum) {};
+	
+	//�ݹ鸳ֵ
+	void dfs(int step)
+	{
+		if (step == maxstep + 1) { Calculator ca(postfix); std::cout << ca.work(); }
+		for (int i = 0; i <= 1; ++i)
+		{
+			Variables::VariableVal[step] = i;
+			dfs(step + 1);
+		}
+	}
 
 	void work()
 	{
-		
+		dfs(1);
 	}
 
 private:
