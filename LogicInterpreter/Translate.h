@@ -41,6 +41,7 @@ public:
 	{
 		for (int i = 0; data[i] != '\0'; ++i)
 		{
+			if (data[i] == ' ') continue;
 			if (isAlphabet(data[i]))					//如果是变量，直接输出
 			{
 				string name=extractVar(data, i);

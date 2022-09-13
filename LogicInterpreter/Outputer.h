@@ -15,15 +15,22 @@ public:
 		if (callTime == 1) 
 		{
 			//¥Ú”°±ÌÕ∑
+			cout << "|";
 			for (int i = 1; i <= Variables::Varcnt; ++i)
 			{
-				cout << Variables::VarSeq[i] << "\t\t";
+				cout << "$$" << Variables::VarSeq[i] << "$$" << "|";
+			}
+			cout<<std::endl << "|";
+			for (int i = 1; i <= Variables::Varcnt; ++i)
+			{
+				cout << ":---:" << "|";
 			}
 		}
 		cout <<std::endl;
+		cout << "|";
 		for (int i = 1; i <= Variables::Varcnt; ++i)
 		{
-			cout << Variables::VariableVal[Variables::VariableName[Variables::VarSeq[i]]] << "\t\t";
+			cout   << ((Variables::VariableVal[Variables::VariableName[Variables::VarSeq[i]]]==true)?"$$True$$":"$$False$$") << "|";
 		}
 		return;
 	}

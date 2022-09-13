@@ -1,7 +1,9 @@
 #include<iostream>
+#pragma warning (disable:4996)
 #include"Translate.h"
 #include"Assign.h"
 #include"Calculator.h"
+#include"windows.h"
 using namespace std;
 using std::string;
 
@@ -20,11 +22,13 @@ string getPostfixNotion(const string& PrefixNotion)
 
 int main()
 {
-	string ss("(p^q)>(p^!q)");
+	freopen("1.md", "w", stdout);
+	string ss("p & q > r");
 	string postfix = getPostfixNotion(ss);
 	cout << postfix << endl;
 	Assign assigner(postfix,Variables::Varcnt);
 	assigner.work();
-
+	fclose(stdout);
+	system("start 1.md");
 	return 0;
 }
