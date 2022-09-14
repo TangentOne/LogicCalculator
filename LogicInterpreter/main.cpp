@@ -87,17 +87,17 @@ void readFromFile()
 */
 int main()
 {
-	freopen("1.md", "w", stdout);
+	freopen("output.md", "w", stdout);
 	
 	readFromFile();
 
-	workOne("(p&!(r&s))>!q");
-	workOne("(q>!p)<(p<q)");
-	workOne("(p^q)>(p^!q)");
+	//workOne("(p&!(r&s))>!q");
+	//workOne("(q>!p)<(p<q)");
+	//workOne("(p^q)>(p^!q)");
 
 
 
 	fclose(stdout);
-	system("start 1.md");
+	system("start output.md");
 	return 0;
 }
