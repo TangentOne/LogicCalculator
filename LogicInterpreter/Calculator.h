@@ -26,7 +26,7 @@ bool getXorAns(bool a, bool b)
 class Calculator
 {
 public:
-
+	static void initial() {};
 	Calculator(string ss):Postfix(ss){}
 	bool work()
 	{

@@ -5,9 +5,13 @@
 using std::cout;
 using std::string;
 
+
 class Outputer
 {
 public:
+
+	static void initial() { callTime = 0; }
+
 	Outputer(){}
 	static void outputone()
 	{

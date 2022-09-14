@@ -16,6 +16,7 @@ enum Priority
 class Operators
 {
 public:
+	static void initial() {};
 	Operators() : pri(P_DUAL) {};
 	Operators(Priority p):pri(p) {};
 	
