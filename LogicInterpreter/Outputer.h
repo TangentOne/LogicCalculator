@@ -11,6 +11,7 @@ class Outputer
 public:
 
 	static void initial() { callTime = 0; }
+	static string outputContent;
 
 	Outputer(){}
 	static void outputone()
@@ -43,6 +44,6 @@ private:
 };
 
 int Outputer::callTime=0;
-
+string Outputer::outputContent="";
 
 #endif // !OUTPUT_H

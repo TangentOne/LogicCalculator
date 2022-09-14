@@ -28,25 +28,49 @@ void initial()
 	Outputer::initial();
 }
 
+
+int workTime = 0;
+
+string Change(string str)
+{
+	size_t last = 0;
+	while ((last=str.find('>',last+1)) != string::npos) { str.replace(last, 1, "\\rightarrow "); }
+	while ((last = str.find('<', last + 1)) != string::npos) { str.replace(last, 1, "\\leftrightarrow "); }
+	while ((last = str.find('&', last + 1)) != string::npos) { str.replace(last, 1, "\\land "); }
+	while ((last = str.find('|', last + 1)) != string::npos) { str.replace(last, 1, "\\lor "); }
+	while ((last = str.find('^', last + 1)) != string::npos) { str.replace(last, 1, "\\bigoplus "); }
+	while ((last = str.find('!', last + 1)) != string::npos) { str.replace(last, 1, "\\neg "); }
+
+	return str;
+}
+
+void workOne(const string& str)
+{
+	Change(str);
+	cout << "### Phase  " << ++workTime<<"."<<"$$" << Change(str)<<"$$\n\n";
+	initial();
+	string postfix = getPostfixNotion(str);
+	Assign assigner(postfix, Variables::Varcnt);
+	assigner.work();
+	
+}
+
+
 /*
 & and
 | or
 ^ xor
 > ->
 < <->
-
 */
 int main()
 {
 	freopen("1.md", "w", stdout);
-	string ss("p & q:1 > r");
-	string postfix = getPostfixNotion(ss);
-	cout << postfix << endl;
-	Assign assigner1(postfix,Variables::Varcnt);
-	assigner1.work();
+	
+	workOne("(p&!(r&s))>!q");
+	workOne("(q>!p)<(p<q)");
+	workOne("(p^q)>(p^!q)");
 
-	cout << endl<<endl<<endl;
-	initial();
 
 
 	fclose(stdout);
