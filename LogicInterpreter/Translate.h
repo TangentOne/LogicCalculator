@@ -33,9 +33,23 @@ char getOperatorName(Priority p)
 	exit(1);
 }
 
+bool ExtractConst(const string& data, int& sta,bool&val)
+{
+	while (data[sta] == ' ') sta++;
+	if (data[sta+1] == ':')
+	{
+		sta+=2;
+		if (data[sta] == '1')val = true;
+		else val = false;
+		return true;
+	}
+	else return false;
+}
+
 class Translate
 {
 public:
+	static void initial() {};
 	Translate(const string& in) :data(in), output("") { output.clear(); }
 	void work()
 	{
@@ -45,7 +59,10 @@ public:
 			if (isAlphabet(data[i]))					//如果是变量，直接输出
 			{
 				string name=extractVar(data, i);
-				Variables var(name);
+				bool constval=false;
+				if (ExtractConst(data, i, constval)) { Variables var(name, IsConstant::IsConst); var.setVal(constval); }
+				else {Variables var(name);}
+				
 				output += name+' ';
 			}
 			else                 

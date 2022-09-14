@@ -19,7 +19,8 @@ public:
 		if (step == maxstep + 1) { Calculator ca(postfix); ca.work(); Outputer out; out.outputone(); return; }
 		for (int i = 0; i <= 1; ++i)
 		{
-			Variables::VariableVal[step] = i;
+			if (Variables::ConstFlag[step] != 1) Variables::VariableVal[step] = i;
+			else i++;
 			dfs(step + 1);
 		}
 	}

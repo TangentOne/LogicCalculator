@@ -9,6 +9,11 @@ using std::cerr;
 using std::string;
 using std::map;
 
+enum IsConstant
+{
+	NonConst, IsConst
+};
+
 string getASqure(string name)
 {
 	return '(' + name + ')';
@@ -26,11 +31,25 @@ important:为了解决多个同名变量共享一个值（例如：p&q->!p中，前后两个p的值应当是同
 class Variables
 {
 public:
+
+	//初始化
+	static void initial() 
+	{
+		VariableName.clear(); 
+		for (int i = 0; i <= Varcnt; ++i) ConstFlag[i]=VariableVal[i] = 0;
+		for (int i = 0; i <= Varcnt; ++i) VarSeq[i].clear();
+		Varcnt = 0;
+	}
+
+
 	//将变量名映射到变量编号
 	static map<string, int> VariableName;
 
 	//输入变量编号，输出该变量的值
 	static bool VariableVal[maxVariables];
+
+	//判断这个变量的值是否是一个常值
+	static bool ConstFlag[maxVariables];
 
 	//统计变量个数
 	static int Varcnt;
@@ -42,14 +61,27 @@ public:
 	Variables() : name(""), val(NULL) {};
 
 	//仅通过变量名构建变量
-	Variables(string na): name(na), val(NULL)
+	explicit Variables(string na,IsConstant con=IsConstant::NonConst): name(na), val(NULL)
 	{
+			
 		//用于绑定变量与其对应的值
 		//如果该变量非第一次出现，直接绑定对应的编号
-		if (VariableName.find(name) != VariableName.end()) { val = &VariableVal[VariableName[name]]; return; }
-		VariableName.emplace(name, ++Varcnt);
-		VarSeq[Varcnt] = name;
-		val = &VariableVal[Varcnt];
+		
+		if (VariableName.find(name) != VariableName.end()) 
+		{ 
+			if (con == IsConstant::IsConst)	ConstFlag[VariableName[name]] = true; //如果是一个常数值，则将ConstFlag=1
+			val = &VariableVal[VariableName[name]]; 
+			return; 
+		}
+		else
+		{
+			VariableName.emplace(name, ++Varcnt);
+			VarSeq[Varcnt] = name;
+			val = &VariableVal[Varcnt];
+			if (con == IsConstant::IsConst)	ConstFlag[Varcnt] = true; //如果是一个常数值，则将ConstFlag=1
+		}
+		
+		
 	}
 
 	//通过变量名和值构建变量，这样会强制修改该变量指向的值(values stored in VariableVal)
@@ -65,11 +97,13 @@ public:
 	//获取变量名
 	string getName() const { return name; }
 
-	//设置变量值，似乎没用上
-	int setVal(bool& pos) { val = &pos; }
+	//设置变量值
+	void setVal(bool value) { Variables::VariableVal[VariableName[name]] = value; }
 	
 	//获取变量值
 	int getVal() { if (val == NULL) { cerr << "Variables"<<name <<" Not yet assigned."; exit(1); } return *val; }
+
+
 private:
 	//变量名，用于区分变量的唯一标识
 	string name;
@@ -83,7 +117,9 @@ private:
 map<string, int> Variables::VariableName;
 string Variables::VarSeq[maxVariables];
 bool Variables::VariableVal[maxVariables];
+bool Variables::ConstFlag[maxVariables];
 int Variables::Varcnt=0;
+
 
 
 
