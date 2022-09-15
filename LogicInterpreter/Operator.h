@@ -57,6 +57,7 @@ public:
 
 	//	cerr << "No name!"; exit(1);
 	//}
+
 private:
 	Priority pri;
 };

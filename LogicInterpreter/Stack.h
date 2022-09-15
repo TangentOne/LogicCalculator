@@ -2,6 +2,7 @@
 #define STACK_H
 
 #include<iostream>
+
 using std::cerr;
 const int maxStacks = 5000;
 using std::string;
@@ -24,24 +25,6 @@ private:
 
 
 
-
-bool isAlphabet(char x)
-{
-	if (x >= 'a' && x <= 'z') return true;
-	if (x >= 'A' && x <= 'Z')return true;
-	return false;
-}
-
-string extractVar(const string& data, int& sta)
-{
-	string tmp;
-	for (; isAlphabet(data[sta]); ++sta)
-	{
-		tmp += data[sta];
-	}
-	sta--;
-	return tmp;
-}
 
 
 #endif

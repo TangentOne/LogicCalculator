@@ -4,6 +4,7 @@
 #include"Variables.h"
 #include"Operator.h"
 #include"Stack.h"
+#include"PublicMethod.h"
 #include<iostream>
 #include<cstdlib>
 using std::string;
@@ -28,6 +29,10 @@ class Calculator
 public:
 	static void initial() {};
 	Calculator(string ss):Postfix(ss){}
+
+	
+
+
 	bool work()
 	{
 		for (int i = 0; Postfix[i] != '\0'; ++i)
@@ -42,47 +47,12 @@ public:
 			else
 			{
 				Operators op(Postfix[i]);
-				if (op.getID() == Priority::P_NEG)
-				{
-					Variables var = stack.pop();
-					Variables var2("\\neg" + getASqure(var.getName()), !var.getVal());
-					stack.push(var2);
-				}
-				else if (op.getID() == Priority::P_CONJ)
-				{
-					Variables var1 = stack.pop();
-					Variables var2 = stack.pop();
-					Variables var3(getASqure(var2.getName())+"\\land "+getASqure(var1.getName()), (var2.getVal()&var1.getVal()));
-					stack.push(var3);
-				}
-				else if (op.getID() == Priority::P_DISJ)
-				{
-					Variables var1 = stack.pop();
-					Variables var2 = stack.pop();
-					Variables var3(getASqure(var2.getName()) + "\\lor " + getASqure(var1.getName()), (var2.getVal() | var1.getVal()));
-					stack.push(var3);
-				}
-				else if (op.getID() == Priority::P_DUAL)
-				{
-					Variables var1 = stack.pop();
-					Variables var2 = stack.pop();
-					Variables var3(getASqure(var2.getName()) + "\\leftrightarrow " + getASqure(var1.getName()),getDualAns(var2.getVal(),var1.getVal()));
-					stack.push(var3);
-				}
-				else if (op.getID() == Priority::P_IMPLY)
-				{
-					Variables var1 = stack.pop();
-					Variables var2 = stack.pop();
-					Variables var3(getASqure(var2.getName()) + "\\rightarrow " + getASqure(var1.getName()), getImplyAns(var2.getVal(),var1.getVal()));
-					stack.push(var3);
-				}
-				else if (op.getID() == Priority::P_XOR)
-				{
-					Variables var1 = stack.pop();
-					Variables var2 = stack.pop();
-					Variables var3(getASqure(var2.getName()) + "\\bigoplus" + getASqure(var1.getName()), getXorAns(var2.getVal(), var1.getVal()));
-					stack.push(var3);
-				}
+				if (op.getID() == Priority::P_NEG) __doNeg();
+				else if (op.getID() == Priority::P_CONJ) __doCon();
+				else if (op.getID() == Priority::P_DISJ) __doDis();
+				else if (op.getID() == Priority::P_DUAL) __doDual();
+				else if (op.getID() == Priority::P_IMPLY) __doImpl();
+				else if (op.getID() == Priority::P_XOR) __doXor();
 			}
 		}
 
@@ -90,6 +60,55 @@ public:
 		return stack.pop().getVal();
 	}
 private:
+
+	void __doNeg()
+	{
+		Variables var = stack.pop();
+		Variables var2("\\neg" + getASqure(var.getName()), !var.getVal());
+		stack.push(var2);
+	}
+	
+	void __doCon()
+	{
+		Variables var1 = stack.pop();
+		Variables var2 = stack.pop();
+		Variables var3(getASqure(var2.getName()) + "\\land " + getASqure(var1.getName()), (var2.getVal() & var1.getVal()));
+		stack.push(var3);
+	}
+	
+	void __doDis()
+	{
+		Variables var1 = stack.pop();
+		Variables var2 = stack.pop();
+		Variables var3(getASqure(var2.getName()) + "\\lor " + getASqure(var1.getName()), (var2.getVal() | var1.getVal()));
+		stack.push(var3);
+	}
+	
+	void __doDual()
+	{
+		Variables var1 = stack.pop();
+		Variables var2 = stack.pop();
+		Variables var3(getASqure(var2.getName()) + "\\leftrightarrow " + getASqure(var1.getName()), getDualAns(var2.getVal(), var1.getVal()));
+		stack.push(var3);
+	}
+	
+	void __doImpl()
+	{
+		Variables var1 = stack.pop();
+		Variables var2 = stack.pop();
+		Variables var3(getASqure(var2.getName()) + "\\rightarrow " + getASqure(var1.getName()), getImplyAns(var2.getVal(), var1.getVal()));
+		stack.push(var3);
+	}
+	
+	void __doXor()
+	{
+		Variables var1 = stack.pop();
+		Variables var2 = stack.pop();
+		Variables var3(getASqure(var2.getName()) + "\\bigoplus" + getASqure(var1.getName()), getXorAns(var2.getVal(), var1.getVal()));
+		stack.push(var3);
+	}
+
+
 	string Postfix;
 	Stack<Variables> stack;
 	

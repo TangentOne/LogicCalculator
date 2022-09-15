@@ -32,20 +32,7 @@ void initial()
 
 
 int workTime = 0;
-
-string Change(string str)
-{
-	size_t last = 0;
-	while ((last=str.find('>',last+1)) != string::npos) { str.replace(last, 1, "\\rightarrow "); }
-	while ((last = str.find('<', last + 1)) != string::npos) { str.replace(last, 1, "\\leftrightarrow "); }
-	while ((last = str.find('&', last + 1)) != string::npos) { str.replace(last, 1, "\\land "); }
-	while ((last = str.find('|', last + 1)) != string::npos) { str.replace(last, 1, "\\lor "); }
-	while ((last = str.find('^', last + 1)) != string::npos) { str.replace(last, 1, "\\bigoplus "); }
-	while ((last = str.find('!', last + 1)) != string::npos) { str.replace(last, 1, "\\neg "); }
-
-	return str;
-}
-
+//读入一个表达式，并进行求解和输出
 void workOne(const string& str)
 {
 	cout << "### Phase  " << ++workTime << ".\n";
@@ -58,6 +45,8 @@ void workOne(const string& str)
 	cout << "\n\n\n\n\n\n\n";
 }
 
+
+//从文件中读入
 const int maxLength = 5000;
 char buffer[maxLength+10];
 void readFromFile()

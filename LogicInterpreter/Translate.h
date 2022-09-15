@@ -4,6 +4,7 @@
 #include"Operator.h"
 #include"cstdlib"
 #include"Variables.h"
+#include"PublicMethod.h"
 using std::string;
 
 Priority getPriority(char x)
@@ -51,6 +52,8 @@ class Translate
 public:
 	static void initial() {};
 	Translate(const string& in) :data(in), output("") { output.clear(); }
+	
+	//经典逆波兰表达式过程
 	void work()
 	{
 		for (int i = 0; data[i] != '\0'; ++i)
@@ -86,6 +89,7 @@ public:
 				{
 					while (stack.getTop().getID() >= op.getID() && !stack.isEmpty())
 					{
+						if (stack.getTop().getID() == op.getID() && op.getID() == Priority::P_NEG) break;
 						Operators x = stack.pop();
 						output += x.getName();
 					}
