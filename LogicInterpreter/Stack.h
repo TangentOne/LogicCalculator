@@ -4,7 +4,7 @@
 #include<iostream>
 
 using std::cerr;
-const int maxStacks = 5000;
+const int maxStacks = 500;
 using std::string;
 
 template<typename T>

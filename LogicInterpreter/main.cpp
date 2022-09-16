@@ -4,6 +4,7 @@
 #include"Assign.h"
 #include"Calculator.h"
 #include"windows.h"
+#include"InfixExpression.h"
 #include<fstream>
 
 using namespace std;
@@ -37,11 +38,21 @@ void workOne(const string& str)
 {
 	cout << "### Phase  " << ++workTime << ".\n";
 	cout<< "$$\n" << Change(str) << "\n$$\n\n";
-	cout << "#### 1.Truth Table\n\n";
+
 	initial();
 	string postfix = getPostfixNotion(str);
+	InFixTrans inf(postfix);
 	Assign assigner(postfix, Variables::Varcnt);
+
+	cout << "#### 1.Simplified Version\n\n";
+	string simplified = inf.work();
+	cout << "$$\n"<<Change(simplified)<<"\n$$";
+	cout << "\n\n" << "`"<<simplified<<"`";
+	cout << "\n\n\n";
+
+	cout << "#### 2.Truth Table\n\n";
 	assigner.work();
+
 	cout << "\n\n\n\n\n\n\n";
 }
 

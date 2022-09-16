@@ -14,10 +14,6 @@ enum IsConstant
 	NonConst, IsConst
 };
 
-string getASqure(string name)
-{
-	return '(' + name + ')';
-}
 
 const int maxVariables = 500;
 
