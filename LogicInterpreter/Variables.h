@@ -58,8 +58,7 @@ public:
 
 	//仅通过变量名构建变量
 	explicit Variables(string na,IsConstant con=IsConstant::NonConst): name(na), val(NULL)
-	{
-			
+	{		
 		//用于绑定变量与其对应的值
 		//如果该变量非第一次出现，直接绑定对应的编号
 		

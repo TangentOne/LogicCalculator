@@ -9,28 +9,17 @@
 #include<cstdlib>
 using std::string;
 
-bool getDualAns(bool a,bool b)
-{
-	return (a & b) | (!a & !b);
-}
+bool getDualAns(bool a,bool b){return (a & b) | (!a & !b);}
 
-bool getImplyAns(bool a,bool b)
-{
-	return (!a | b);
-}
+bool getImplyAns(bool a,bool b){return (!a | b);}
 
-bool getXorAns(bool a, bool b)
-{
-	return (!a & b) | (a & !b);
-}
+bool getXorAns(bool a, bool b){return (!a & b) | (a & !b);}
 
 class Calculator
 {
 public:
 	static void initial() {};
 	Calculator(string ss):Postfix(ss){}
-
-	
 
 
 	bool work()
@@ -47,12 +36,12 @@ public:
 			else
 			{
 				Operators op(Postfix[i]);
-				if (op.getID() == Priority::P_NEG) __doNeg();
-				else if (op.getID() == Priority::P_CONJ) __doCon();
-				else if (op.getID() == Priority::P_DISJ) __doDis();
-				else if (op.getID() == Priority::P_DUAL) __doDual();
-				else if (op.getID() == Priority::P_IMPLY) __doImpl();
-				else if (op.getID() == Priority::P_XOR) __doXor();
+				if (op.getID() == Priority::P_NEG)			__doNeg();
+				else if (op.getID() == Priority::P_CONJ)	__doCon();
+				else if (op.getID() == Priority::P_DISJ)	__doDis();
+				else if (op.getID() == Priority::P_DUAL)	__doDual();
+				else if (op.getID() == Priority::P_IMPLY)	__doImpl();
+				else if (op.getID() == Priority::P_XOR)		__doXor();
 			}
 		}
 
