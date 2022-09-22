@@ -74,7 +74,7 @@ private:
 	{
 		int var1 = stack.pop();
 		int var2 = stack.pop();
-		stack.push(!var1|var2);
+		stack.push(!var2|var1);
 	}
 
 	void __doXor()
