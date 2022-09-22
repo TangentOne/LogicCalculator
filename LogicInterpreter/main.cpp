@@ -155,6 +155,7 @@ void QuickAssign(int step,string* str1,string* str2)
 //对比的主逻辑
 void Compare(const string& str)
 {
+	initial();
 	NotequalCallTime = 0;
 	cout << "### Phase  " << ++workTime << ".\n";
 	
@@ -209,7 +210,6 @@ void readFromFile()
 */
 int main()
 {
-
 	freopen("output.md", "w", stdout);
 	
 	readFromFile();
